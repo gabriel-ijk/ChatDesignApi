@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= room.name %></title>
+  <link href="/public/css/style.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+          <h1><%= room.name %></h1>
+          <div id="chat-box">
+            <% room.messages.forEach(msg => { %>
+              <div class="<%= msg.user === user ? 'message-sent' : 'message-received' %>">
+                <strong><%= msg.user %>:</strong> <%= msg.text %>
+              </div>
+            <% }); %>
+          </div>
+          <form id="chat-form" class="mt-3">
+            <input type="text" id="message" class="form-control" placeholder="Digite sua mensagem" required>
+            <button class="btn btn-primary mt-2" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+
+  <script>
+    document.getElementById('chat-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = document.getElementById('message').value;
+
+      try {
+        await axios.post('/rooms/room/<%= room.id %>/message', { message });
+        document.getElementById('message').value = ''; // Limpar o campo de entrada
+        location.reload();  // Atualizar a página para mostrar a nova mensagem
+      } catch (error) {
+        console.error('Erro ao enviar mensagem', error);
+      }
+    });
+  </script>
+</body>
+</html>

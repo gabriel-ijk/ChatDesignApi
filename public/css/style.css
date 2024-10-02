@@ -1,0 +1,58 @@
+/* Tema Escuro */
+body {
+    background-color: #121212;
+    color: #ffffff;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .card {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #800020;
+    border-color: #800020;
+  }
+  
+  .btn-primary:hover {
+    background-color: #a00030;
+    border-color: #a00030;
+  }
+  
+  #chat-box {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+  }
+  
+  .message-sent {
+    text-align: right;
+    color: #80bfff;
+  }
+  
+  .message-received {
+    text-align: left;
+    color: #ffa07a;
+  }
+  
+  input[type="text"], input[type="password"] {
+    background-color: #2e2e2e;
+    border: 1px solid #555;
+    color: #fff;
+  }
+  
+  input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #888;
+  }
+  

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salas</title>
+  <link href="/public/css/style.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+          <h1>Salas de Chat</h1>
+          <form action="/rooms/create" method="POST">
+            <div class="form-group">
+              <label for="name">Nome da Sala</label>
+              <input type="text" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>Privada?</label>
+              <input type="checkbox" name="isPrivate" id="privateCheckbox">
+            </div>
+            <div class="form-group" id="passwordField" style="display: none;">
+              <label for="password">Senha (se privada)</label>
+              <input type="password" name="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Criar Sala</button>
+          </form>
+
+          <script>
+            document.getElementById('privateCheckbox').addEventListener('change', function() {
+              const passwordField = document.getElementById('passwordField');
+              if (this.checked) {
+                passwordField.style.display = 'block';
+              } else {
+                passwordField.style.display = 'none';
+              }
+            });
+          </script>
+      
+          <h2 class="mt-4">Salas Disponíveis</h2>
+          <ul class="list-group">
+            <% rooms.forEach(room => { %>
+              <li class="list-group-item">
+                <a href="/rooms/room/<%= room.id %>"><%= room.name %></a> <span class="badge badge-secondary"><%= room.isPrivate ? 'Privada' : 'Pública' %></span>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+</body>
+</html>
